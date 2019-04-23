@@ -4,6 +4,15 @@ $data = json_decode($json,true);
 $json = file_get_contents("latest.json");
 $meta = json_decode($json,true);
 $number = 0;
+if(isset($_GET['post'])){
+  $number = $_GET['post']>0?$_GET['post']-1:$_GET['post'];
+  if(empty($data["items"][$number]["categories"])){ //skipping showing comments, and jumping to next story. //need a little fix here as $number for comment and next story will be same.
+    $number++;
+  }
+}
+if($number > count($data["items"])){
+  exit("No Post Found!!!");
+}
 if(!isset($meta["payload"])){
   header("location:./fetch/");
 }
@@ -30,10 +39,10 @@ if(!isset($data["items"])){
           <span class="mdl-layout-title">Blog | Nirav Madariya</span>
           <div class="mdl-layout-spacer"></div>
           <nav class="mdl-navigation mdl-layout--large-screen-only">
-            <a class="mdl-navigation__link" href="https://medium.com/@niravmadariya">Medium</a>
-            <a class="mdl-navigation__link" href="https://twitter.com/niravmadariya">Twitter</a>
-            <a class="mdl-navigation__link" href="https://linkedin.com/in/niravmadariya">LinkedIn</a>
-            <a class="mdl-navigation__link" href="https://instagram.com/niravmadariya">Instagram</a>
+            <a class="mdl-navigation__link" target="_blank" href="<?php echo $meta["payload"]["userNavItemList"]["userNavItems"][0]["url"]; ?>">Medium</a>
+            <a class="mdl-navigation__link" target="_blank" href="<?php echo "https://twitter.com/".$meta["payload"]["user"]["twitterScreenName"]; ?>">Twitter</a>
+            <a class="mdl-navigation__link" target="_blank" href="https://linkedin.com/in/niravmadariya">LinkedIn</a>
+            <a class="mdl-navigation__link" target="_blank" href="https://instagram.com/niravmadariya">Instagram</a>
           </nav>
         </div>
       </header>
@@ -48,7 +57,7 @@ if(!isset($data["items"])){
                         </p>
                     </div>
                 </div>
-                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" target="_blank" href="<?php echo $data["items"][$number]["guid"]; ?>"></a>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect medium-button" target="_blank" href="<?php echo $data["items"][$number]["guid"]; ?>"></a>
             </div>
           <div class="mdl-grid center">
               <div class="mdl-cell mdl-cell--9-col mdl-cell--10-col-tablet">

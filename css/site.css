@@ -38,8 +38,18 @@ a{
     right: 20px;
     z-index: 10;
 }
+
+.demo-list-control {
+    width: 100%;
+  }
+  
+  .demo-list-radio {
+    display: inline;
+  }
+
 @media only screen and (min-width: 700px) {
-    .floating-button > a{
+    .medium-button{
+        float: right;
         background-image: url("../img/Logo.png");
         background-size: 100% 100%;
         height: 40px; 
@@ -47,7 +57,8 @@ a{
     }
 }
 @media only screen and (max-width: 700px) {
-    .floating-button > a{
+    .medium-button{
+        float: right;
         background-image: url("../img/Monogram.png");
         background-size: 100% 100%;
         height: 54px; 
@@ -57,7 +68,9 @@ a{
         min-width: 36px;
     }
 }
-
+.mdl-card{
+    max-width: fit-content;
+}
 .story-card{
     width: 100%;
     height: 100%;
@@ -85,6 +98,7 @@ h3{
 pre{
     background-color: #eee;
     padding: 15px;
+    overflow: auto;
 }
 h3 > strong{
     font-size: 20px;
