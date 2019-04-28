@@ -23,6 +23,10 @@ a{
     font-size: 18px;
     text-decoration: none;
 }
+.mdl-layout__drawer{
+    width: 300px;
+    transform: translateX(-310px);
+}
 .header ul{
     padding-left: 0px;
 }

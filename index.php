@@ -46,6 +46,17 @@ if(!isset($data["items"])){
           </nav>
         </div>
       </header>
+      <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">All Posts</span>
+      <nav class="mdl-navigation">
+      <?php for($i=((count($data["items"]))-1);$i>=0;$i--){ 
+            if(!count($data["items"][$i]["categories"])){
+                continue;
+            }; ?>
+        <a class="mdl-navigation__link" href=<?php echo "./?post=".($i+1).">".$data["items"][$i]["title"]; ?></a>
+        <?php } ?>
+      </nav>
+    </div>
       <main class="mdl-layout__content">
         <div class="page-content">
             <div class="floating-button">
